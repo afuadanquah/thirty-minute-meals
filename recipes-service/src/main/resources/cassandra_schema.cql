@@ -5,15 +5,17 @@ CREATE
         'replication_factor' : 1
         };
 
+CREATE TYPE meals.ingredients (
+    name text,
+    quantity int
+    );
 
-CREATE TABLE IF NOT EXISITS meals.recipe (
+CREATE TABLE IF NOT EXISTS meals.recipe (
 
     id text PRIMARY KEY,
     name text,
-    ingredients text,
+    ingredients list<Ingredients>,
     serves int,
     duration int,
     instructions text
 );
-
-
