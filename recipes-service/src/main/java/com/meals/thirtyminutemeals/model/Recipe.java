@@ -1,5 +1,8 @@
 package com.meals.thirtyminutemeals.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import jnr.ffi.annotations.In;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -9,12 +12,12 @@ public class Recipe {
   @PrimaryKey
   private String id;
   private String name;
-  private String ingredients;
+  private List<Ingredients> ingredients;
   private int serves;
   private int duration;
   private String instructions;
 
-  public Recipe(String id, String name, String ingredients, int serves, int duration,
+  public Recipe(String id, String name, List<Ingredients> ingredients, int serves, int duration,
                 String instructions) {
     this.id = id;
     this.name = name;
@@ -32,6 +35,14 @@ public class Recipe {
     this.id = id;
   }
 
+  public List<Ingredients> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(List<Ingredients> ingredients) {
+    this.ingredients = ingredients;
+  }
+
   public String getName() {
     return name;
   }
@@ -40,13 +51,8 @@ public class Recipe {
     this.name = name;
   }
 
-  public String getIngredients() {
-    return ingredients;
-  }
 
-  public void setIngredients(String ingredients) {
-    this.ingredients = ingredients;
-  }
+
 
   public int getServes() {
     return serves;
