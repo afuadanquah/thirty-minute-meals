@@ -26,15 +26,9 @@ public class RecipeService {
     return recipes;
   }
 
-  public Recipe addOneRecipe(String name, String ingredient_name, int ingredient_quantity, int serves, int duration, String instructions){
+  public Recipe addRecipe(Recipe recipe){
+     return recipeRepository.save(recipe);
 
-    List<Ingredients> ingredient = new ArrayList<>();
-    ingredient.add(new Ingredients(ingredient_name, ingredient_quantity));
-
-
-    Recipe recipe = new Recipe(UUID.randomUUID().toString(), name, ingredient, serves, duration, instructions);
-
-    return recipeRepository.save(recipe);
   }
 
 
