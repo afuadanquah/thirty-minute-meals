@@ -32,4 +32,7 @@ public class RecipeService {
   }
 
 
+  public List<Recipe> addRecipes(List<Recipe> recipe) {
+    return recipeRepository.saveAll(recipe);
+  }
 }
