@@ -76,6 +76,12 @@ public class RecipeController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
+  @DeleteMapping("/delete-recipes")
+  public ResponseEntity<HttpStatus> deleteRecipes(List<Recipe> recipes){
+    recipeService.deleteAllRecipes(recipes);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
   @PutMapping("/update-recipe/{id}")
   public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") String id, @RequestBody Recipe recipe){
     Recipe updateRecipe = recipeService.updateRecipe(recipe, id);

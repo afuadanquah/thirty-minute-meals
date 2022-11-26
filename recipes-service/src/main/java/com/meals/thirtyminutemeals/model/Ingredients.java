@@ -1,7 +1,5 @@
 package com.meals.thirtyminutemeals.model;
 
-import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 @UserDefinedType
