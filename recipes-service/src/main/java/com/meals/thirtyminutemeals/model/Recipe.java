@@ -51,9 +51,6 @@ public class Recipe {
     this.name = name;
   }
 
-
-
-
   public int getServes() {
     return serves;
   }
