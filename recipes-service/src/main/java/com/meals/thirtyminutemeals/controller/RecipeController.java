@@ -10,14 +10,17 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("recipe")
+@RequestMapping("thirty-min-meals")
 public class RecipeController {
 
   @Autowired
@@ -43,24 +46,41 @@ public class RecipeController {
   }
 
 
-  @GetMapping("/all")
+  @GetMapping("/recipes")
   public ResponseEntity<List<Recipe>> getAllRecipes(){
-    List<Recipe> recipes = recipeService.getAllTheRecipes();
+    List<Recipe> recipes = recipeService.getAllRecipes();
     return new ResponseEntity<>(recipes, HttpStatus.OK);
   }
 
-  @PostMapping(path = "/addRecipe")
+  @GetMapping("/recipe/{id}")
+  public ResponseEntity<Recipe> getRecipeByID(@PathVariable String id){
+    Recipe getRecipeByID = recipeService.getRecipeByID(id);
+    return new ResponseEntity<>(getRecipeByID, HttpStatus.OK);
+  }
+
+  @PostMapping(path = "/add-recipe")
   public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe recipe){
     Recipe addRecipe = recipeService.addRecipe(recipe);
     return new ResponseEntity<>(addRecipe, HttpStatus.CREATED);
   }
 
-  @PostMapping(path = "/addRecipes")
+  @PostMapping(path = "/add-recipes")
   public ResponseEntity<List<Recipe>> saveRecipe(@RequestBody List<Recipe> recipe){
     List<Recipe> addRecipe = recipeService.addRecipes(recipe);
     return new ResponseEntity<>(addRecipe, HttpStatus.CREATED);
   }
 
+  @DeleteMapping("/delete-recipe/{id}")
+  public ResponseEntity<HttpStatus> deleteRecipe(@PathVariable("id") String id){
+    recipeService.deleteRecipe(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @PutMapping("/update-recipe/{id}")
+  public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") String id, @RequestBody Recipe recipe){
+    Recipe updateRecipe = recipeService.updateRecipe(recipe, id);
+    return new ResponseEntity(updateRecipe, HttpStatus.OK);
+  }
 
 
 }
