@@ -49,8 +49,8 @@ public class RecipeService {
      recipeRepository.deleteById(id);
   }
 
-  public void deleteAllRecipes(){
-    recipeRepository.deleteAll();
+  public void deleteAllRecipes(List<Recipe> recipes){
+    recipeRepository.deleteAll(recipes);
   }
 
 

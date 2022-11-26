@@ -1,8 +1,6 @@
 package com.meals.thirtyminutemeals.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import jnr.ffi.annotations.In;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
