@@ -2,6 +2,8 @@ package com.meals.thirtyminutemeals.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -85,5 +87,17 @@ public class RecipeControllerTest {
         .andExpect(content().json(jsonString)) //Then
         .andExpect(content().contentType("application/json")); //Then
   }
+
+  @Test
+  @DisplayName("Confirm recipe is deleted by ID")
+  public void whenDeleteRecipeByID() throws Exception {
+
+    doNothing().when(recipeService).deleteRecipe(mockRecipe.get(1).toString());
+
+    mockMvc.perform(delete("/thirty-min-meals/delete-recipe/" + mockRecipe.get(1).getId()))
+        .andExpect(status().isNoContent());
+
+  }
+
   }
 

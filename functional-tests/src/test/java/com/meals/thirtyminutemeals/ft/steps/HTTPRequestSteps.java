@@ -44,6 +44,18 @@ public class HTTPRequestSteps {
     log.info(String.valueOf(httpRequest.getResponse().getBody().jsonPath()));
   }
 
+//  @Then("Client adds one recipe")
+//  public void addOneRecipe(){
+//    List<Ingredients> oneIngredient = new ArrayList<>();
+//    oneIngredient.add(new Ingredients("1st", 4));
+//
+//    List<Recipe> mockRecipe = new ArrayList<>();
+//    mockRecipe.add(new Recipe("8", "a", oneIngredient, 4, 4, "notes"));
+//    String jsonString = new Gson().toJson(mockRecipe);
+//
+//    httpRequest.setResponse(client.sendPostRequest("/thirty-min-meals/add-recipe", mockRecipe));
+//  }
+
 
 
   @Then("Client checks that there are {int} recipes are available")
