@@ -42,12 +42,15 @@ public class RecipeControllerTest {
 
   @BeforeEach
   public void setUp(){
-    List<Ingredients> oneIngredient = new ArrayList<>();
-    oneIngredient.add(new Ingredients("1st", 4));
+    List<Ingredients> testIngredientsOne = new ArrayList<>();
+    testIngredientsOne.add(new Ingredients("1st", "4"));
+
+    List<Ingredients> testIngredientsTwo = new ArrayList<>();
+    testIngredientsTwo.add(new Ingredients("2nd", "4"));
 
     mockRecipe = new ArrayList<>();
-    mockRecipe.add(new Recipe("1", "a", oneIngredient, 4, 4, "notes"));
-    mockRecipe.add(new Recipe("2", "a", oneIngredient, 4, 4, "notes"));
+    mockRecipe.add(new Recipe("1", "a", testIngredientsOne, 4, "4", "notes"));
+    mockRecipe.add(new Recipe("2", "a", testIngredientsTwo, 4, "4", "notes"));
   }
 
 

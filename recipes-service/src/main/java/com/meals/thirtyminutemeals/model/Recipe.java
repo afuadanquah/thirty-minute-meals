@@ -11,16 +11,16 @@ public class Recipe {
   private String id;
   private String name;
   private List<Ingredients> ingredients;
-  private int serves;
-  private int duration;
+  private int serving;
+  private String duration;
   private String instructions;
 
-  public Recipe(String id, String name, List<Ingredients> ingredients, int serves, int duration,
+  public Recipe(String id, String name, List<Ingredients> ingredients, int serving, String duration,
                 String instructions) {
     this.id = id;
     this.name = name;
     this.ingredients = ingredients;
-    this.serves = serves;
+    this.serving = serving;
     this.duration = duration;
     this.instructions = instructions;
   }
@@ -49,19 +49,19 @@ public class Recipe {
     this.name = name;
   }
 
-  public int getServes() {
-    return serves;
+  public int getServing() {
+    return serving;
   }
 
-  public void setServes(int serves) {
-    this.serves = serves;
+  public void setServing(int serving) {
+    this.serving = serving;
   }
 
-  public int getDuration() {
+  public String getDuration() {
     return duration;
   }
 
-  public void setDuration(int duration) {
+  public void setDuration(String duration) {
     this.duration = duration;
   }
 

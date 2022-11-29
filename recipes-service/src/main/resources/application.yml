@@ -10,3 +10,27 @@ spring:
       keyspace-name: meals
       schema-action: create_if_not_exists
       entity-base-package: com.meals.thirtyminutemeals.model
+
+anagement:
+  info:
+    build:
+      enabled: true
+
+
+  endpoints:
+    web:
+      exposure:
+        include: info
+      base-path: /private
+
+info:
+  application:
+    name: "Thirty Minute Meals"
+    description: "Service which provides customers recipes which are 30 minutes or less"
+
+  build:
+    artifact: "recipe-service"
+    name: "recipe-service"
+    time: LocalDateTime.now(Clock.systemDefaultZone())
+    version: "0.0.1"
+    group: "com.meals"
