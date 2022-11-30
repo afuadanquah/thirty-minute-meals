@@ -45,7 +45,6 @@ task cucumber() {
     dependsOn assemble, testClasses
     doLast {
         javaexec {
-            systemProperties = ['spring.profiles.active': profile]
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = ['--plugin', 'html:build/reports/report.html', '--glue', 'com.meals.thirtyminutemeals.ft', 'src/test/resources']
