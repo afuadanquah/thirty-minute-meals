@@ -27,4 +27,10 @@ public class TestHttpClient {
     RequestSpecification requestSpecification = requestSpecBuilder.build();
     return given(requestSpecification).get(endpoint);
   }
+
+//  TODO need to investigate how to add POST into a database and retrieve the correct total of items
+//  public Response sendPostRequest(String endpoint, List<Recipe> body) {
+//    RequestSpecification requestSpecification = requestSpecBuilder.setBody(body).build();
+//    return given(requestSpecification).post(endpoint);
+//  }
 }

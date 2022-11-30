@@ -65,7 +65,7 @@ public class RecipeService {
       updatedRecipe.setIngredients(recipe.getIngredients());
       updatedRecipe.setInstructions(recipe.getInstructions());
       updatedRecipe.setName(recipe.getName());
-      updatedRecipe.setServes(recipe.getServes());
+      updatedRecipe.setServing(recipe.getServing());
 
       return recipeRepository.save(updatedRecipe);
 

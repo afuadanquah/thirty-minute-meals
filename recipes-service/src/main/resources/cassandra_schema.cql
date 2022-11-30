@@ -7,15 +7,15 @@ CREATE
 
 CREATE TYPE meals.ingredients (
     name text,
-    quantity int
+    quantity text
     );
 
 CREATE TABLE IF NOT EXISTS meals.recipe (
 
     id text PRIMARY KEY,
     name text,
-    ingredients list<Ingredients>,
-    serves int,
-    duration int,
+    ingredients frozen<list<Ingredients>>,
+    serving int,
+    duration text,
     instructions text
 );

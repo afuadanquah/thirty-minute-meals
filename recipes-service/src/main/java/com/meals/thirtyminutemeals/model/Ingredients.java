@@ -6,9 +6,9 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 public class Ingredients {
 
   private String name;
-  private int quantity;
+  private String quantity;
 
-  public Ingredients(String name, int quantity) {
+  public Ingredients(String name, String quantity) {
     this.name = name;
     this.quantity = quantity;
   }
@@ -21,11 +21,11 @@ public class Ingredients {
     this.name = name;
   }
 
-  public int getQuantity() {
+  public String getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(int quantity) {
+  public void setQuantity(String quantity) {
     this.quantity = quantity;
   }
 }
