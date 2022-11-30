@@ -88,13 +88,13 @@ public class RecipeController {
   }
 
   @PostMapping(path = "/add-recipe")
-  public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe recipe){
+  public ResponseEntity<Recipe> saveSingle(@RequestBody Recipe recipe){
     Recipe addRecipe = recipeService.addRecipe(recipe);
     return new ResponseEntity<>(addRecipe, HttpStatus.CREATED);
   }
 
   @PostMapping(path = "/add-recipes")
-  public ResponseEntity<List<Recipe>> saveRecipe(@RequestBody List<Recipe> recipe){
+  public ResponseEntity<List<Recipe>> saveMultipleRecipes(@RequestBody List<Recipe> recipe){
     List<Recipe> addRecipe = recipeService.addRecipes(recipe);
     return new ResponseEntity<>(addRecipe, HttpStatus.CREATED);
   }

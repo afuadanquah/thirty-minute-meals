@@ -11,11 +11,12 @@ spring:
       schema-action: create_if_not_exists
       entity-base-package: com.meals.thirtyminutemeals.model
 
-anagement:
+management:
   info:
     build:
       enabled: true
-
+    env:
+      enabled: true
 
   endpoints:
     web:
