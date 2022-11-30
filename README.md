@@ -1,6 +1,6 @@
-#Thirty Minute Meals
+# Thirty Minute Meals
 
-###Specification - Create A Recipe API which showcases the CRUD endpoints.
+### Specification - Create A Recipe API which showcases the CRUD endpoints.
 
 This application showcases nutritious and wholesome meals that are 30 minutes or less - it is for the busy person, multifaceted family or simply the individual who hates cooking. 
 
@@ -13,7 +13,7 @@ Ensure you have the following tools downloaded:
 * [Postman](https://www.postman.com/downloads/) - Serves a Client UI (Optional)
 * [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac) - IDE (Optional)
 
-####Instructions for local installation:
+#### Instructions for local installation:
 
 1. Build the application using Gradle. At the root directory of the project, run the command - ./gradlew build or gradle build. **NB:** You may have to comment the functional tests to build the project then uncomment the functional tests.
 2. Run Docker-compose.yml file - Found in the recipes-service module. This will spin up the Cassandra Database.
@@ -21,9 +21,9 @@ Ensure you have the following tools downloaded:
 4. Test the CRUD endpoints by using Postman or navigate the Recipe Controller. You will find the Recipe endpoints in the Rest Controller. 
 5. You can also check the status of the application using this endpoint - localhost:8080/private/status and information about the application - localhost:8080/private/info
 
-####Below you will find data to test the CREATE and PUT endpoints:
+#### Below you will find data to test the CREATE and PUT endpoints:
 
-####Single recipe:
+#### Single recipe:
 
 ```
 {
@@ -55,7 +55,7 @@ Ensure you have the following tools downloaded:
     "instructions": "1. Put a griddle pan on a high heat. 2. Scrunch the minced chicken and harissa in your clean hands until well mixed. 3. Divide into 6 pieces, then shape into koftas with your fingertips, leaving dents in the surface to increase the gnarly bits as they cook. 4. Griddle for 4 to 5 minutes on each side, or until sizzling and golden. 5. Meanwhile, shred the red cabbage as finely as you can. Sprinkle with a pinch of sea salt and black pepper, drizzle with 1 tablespoon of red wine vinegar, then scrunch together to quickly pickle it. 6. Warm your tortillas or flatbreads, sprinkle over the cabbage, spoon over the cottage cheese, add the koftas, drizzle with a little extra harissa, and tuck in."
 }
 ```
-####Multiple recipes:
+#### Multiple recipes:
 
 ```
 [
