@@ -19,6 +19,7 @@ Ensure you have the following tools downloaded:
 2. Run Docker-compose.yml file - Found in the recipes-service module. This will spin up the Cassandra Database.
 3. Run the spring boot application
 4. Test the CRUD endpoints by using Postman or navigate the Recipe Controller. You will find the Recipe endpoints in the Rest Controller. 
+5. You can also check the status of the application using this endpoint - localhost:8080/private/status and information about the application - localhost:8080/private/info
 
 ####Below you will find data to test the CREATE and PUT endpoints:
 
