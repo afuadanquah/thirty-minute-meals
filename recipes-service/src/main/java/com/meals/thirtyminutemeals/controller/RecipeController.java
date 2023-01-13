@@ -2,7 +2,6 @@ package com.meals.thirtyminutemeals.controller;
 
 import com.meals.thirtyminutemeals.model.Ingredients;
 import com.meals.thirtyminutemeals.model.Recipe;
-
 import com.meals.thirtyminutemeals.service.RecipeService;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ public class RecipeController {
   }
 
   @GetMapping("/recipe/{id}")
-  public ResponseEntity<Recipe> getRecipeByID(@PathVariable String id){
+  public ResponseEntity<Recipe> getRecipeByID(@PathVariable String id) throws Exception {
     Recipe getRecipeByID = recipeService.getRecipeByID(id);
     return new ResponseEntity<>(getRecipeByID, HttpStatus.OK);
   }
@@ -112,7 +111,8 @@ public class RecipeController {
   }
 
   @PutMapping("/update-recipe/{id}")
-  public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") String id, @RequestBody Recipe recipe){
+  public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") String id, @RequestBody Recipe recipe)
+      throws Exception {
     Recipe updateRecipe = recipeService.updateRecipe(recipe, id);
     return new ResponseEntity<>(updateRecipe, HttpStatus.OK);
   }
