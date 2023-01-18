@@ -2,9 +2,15 @@ package com.meals.thirtyminutemeals.ft.utils;
 
 import static io.restassured.RestAssured.given;
 
+import com.google.gson.Gson;
+import com.meals.thirtyminutemeals.model.Recipe;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -27,10 +33,18 @@ public class TestHttpClient {
     RequestSpecification requestSpecification = requestSpecBuilder.build();
     return given(requestSpecification).get(endpoint);
   }
+  public Response sendPostRequest(String endpoint, String body) {
+    Map<String, String> headers = new HashMap<>(){
+      {
+        put("Content-Type", "application/json");
+      }
+    };
+    RequestSpecification requestSpecification = requestSpecBuilder.addHeaders(headers).build();
+    return given(requestSpecification).body(body).post(endpoint);
+  }
 
-//  TODO need to investigate how to add POST into a database and retrieve the correct total of items
-//  public Response sendPostRequest(String endpoint, List<Recipe> body) {
-//    RequestSpecification requestSpecification = requestSpecBuilder.setBody(body).build();
-//    return given(requestSpecification).post(endpoint);
-//  }
+  public Response sendDeleteRequest(String endpoint){
+    RequestSpecification requestSpecification = requestSpecBuilder.build();
+    return given(requestSpecification).delete(endpoint);
+  }
 }
