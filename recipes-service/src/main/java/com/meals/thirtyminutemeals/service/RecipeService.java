@@ -3,6 +3,7 @@ package com.meals.thirtyminutemeals.service;
 import com.meals.thirtyminutemeals.model.Recipe;
 import com.meals.thirtyminutemeals.repository.RecipeRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,9 +55,9 @@ public class RecipeService {
   //PUT logic(s)
   public Recipe updateRecipe(Recipe recipe, String id) throws Exception {
 
-    Recipe recipeData = recipeRepository.findById(id).orElseThrow(() -> new Exception("no recipe found"));
+   recipeRepository.findById(id).orElseThrow(() -> new Exception("no recipe found"));
 
-    return recipeRepository.save(recipeData);
+    return recipeRepository.save(recipe);
 
 
 

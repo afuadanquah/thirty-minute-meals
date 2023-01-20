@@ -1,9 +1,6 @@
 package com.meals.thirtyminutemeals.ft.steps;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 import com.meals.thirtyminutemeals.ft.model.TestHTTPRequest;
 import com.meals.thirtyminutemeals.ft.utils.TestHttpClient;
@@ -14,15 +11,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.entity.StringEntity;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 
 @Slf4j
@@ -37,6 +30,7 @@ public class HTTPRequestSteps {
       put("add-recipe", "/thirty-min-meals/add-recipe");
       put("private-status", "/private/status");
       put("delete-recipe", "/thirty-min-meals/delete-recipe/");
+      put("update-recipe", "/thirty-min-meals/update-recipe/");
     }
   };
 
@@ -124,10 +118,34 @@ public class HTTPRequestSteps {
     Assertions.assertEquals(jsonString, httpRequest.getResponseBody());
   }
 
-  @When("Client makes a DELETE request to {string} endpoint with the {string}")
-  public void clientMakesARequestToEndpointWithTheId(String endpoint, String id) {
-  String deleteEndpoint = endpoints.get(endpoint) + id;
-  httpRequest.setResponse(client.sendDeleteRequest(deleteEndpoint));
+  @When("Client makes a {string} request to {string} endpoint with the {string}")
+  public void clientMakesARequestToEndpointWithTheId(String request, String endpoint, String id) {
+    if (request.equals("DELETE")) {
+      log.info("Endpoint is {}", endpoints.get(endpoint));
+      String deleteEndpoint = endpoints.get(endpoint) + id;
+      httpRequest.setResponse(client.sendDeleteRequest(deleteEndpoint));
+    } else if (request.equals("PUT")) {
+      log.info("Endpoint is {}", endpoints.get(endpoint) + id);
+      String updateEndpoint = endpoints.get(endpoint) + id;
+      List<Ingredients> oneIngredient1 = new ArrayList<>();
 
+      oneIngredient1.add(new Ingredients("First Ingredient", "1"));
+      oneIngredient1.add(new Ingredients("Second Ingredient", "2"));
+      oneIngredient1.add(new Ingredients("Third Ingredient", "3"));
+      oneIngredient1.add(new Ingredients("Fourth Ingredient", "4"));
+
+      List<Recipe> mockRecipe1 = new ArrayList<>();
+      mockRecipe1.add(new Recipe("8", "Updated Recipe", oneIngredient1, 4, "10 mins", "notes"));
+
+
+      String json = new Gson().toJson(mockRecipe1.get(0));
+
+
+      httpRequest.setResponse(client.sendPutRequest(json, updateEndpoint));
+
+
+    }
   }
+
+
 }

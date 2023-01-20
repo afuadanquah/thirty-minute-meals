@@ -25,6 +25,7 @@ public class RecipeController {
   @Autowired
   private RecipeService recipeService;
 
+
   @PostConstruct
   public void saveRecipes(){
     List<Recipe> recipes = new ArrayList<>();
@@ -83,6 +84,9 @@ public class RecipeController {
   @GetMapping("/recipe/{id}")
   public ResponseEntity<Recipe> getRecipeByID(@PathVariable String id) throws Exception {
     Recipe getRecipeByID = recipeService.getRecipeByID(id);
+    if(getRecipeByID == null){
+      throw new Exception();
+    }
     return new ResponseEntity<>(getRecipeByID, HttpStatus.OK);
   }
 

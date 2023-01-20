@@ -2,14 +2,10 @@ package com.meals.thirtyminutemeals.ft.utils;
 
 import static io.restassured.RestAssured.given;
 
-import com.google.gson.Gson;
-import com.meals.thirtyminutemeals.model.Recipe;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +38,18 @@ public class TestHttpClient {
     RequestSpecification requestSpecification = requestSpecBuilder.addHeaders(headers).build();
     return given(requestSpecification).body(body).post(endpoint);
   }
+
+  public Response sendPutRequest(String body, String endpoint) {
+    Map<String, String> headers = new HashMap<>(){
+      {
+        put("Content-Type", "application/json");
+      }
+    };
+    RequestSpecification requestSpecification = requestSpecBuilder.addHeaders(headers).build();
+    return given(requestSpecification).body(body).put(endpoint);
+  }
+
+
 
   public Response sendDeleteRequest(String endpoint){
     RequestSpecification requestSpecification = requestSpecBuilder.build();
