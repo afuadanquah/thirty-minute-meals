@@ -2,10 +2,7 @@ package com.meals.thirtyminutemeals.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.meals.thirtyminutemeals.model.Ingredients;
@@ -14,7 +11,6 @@ import com.meals.thirtyminutemeals.repository.RecipeRepository;
 import com.meals.thirtyminutemeals.service.RecipeService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -69,7 +65,7 @@ public class RecipeServiceTest {
   }
 
   @Test
-  public void returnRecipeByID_whenGiveItAListOfRecipes(){
+  public void returnRecipeByID_whenGiveItAListOfRecipes() throws Exception {
     List<Recipe> recipeList = new ArrayList<>();
 
     List<Ingredients> mackerelIngredients = new ArrayList<>();
@@ -99,7 +95,7 @@ public class RecipeServiceTest {
 
     when(recipeRepository.findById("1")).thenReturn(recipeList.stream().findAny());
 
-    assertEquals(recipeList.get(0), recipeService.getRecipeByID("1"));
+    assertThat(recipeService.getRecipeByID("1")).usingRecursiveComparison().isEqualTo(recipeList.get(0));
   }
 
   @Test

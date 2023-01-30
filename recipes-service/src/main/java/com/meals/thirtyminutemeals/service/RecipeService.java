@@ -19,15 +19,13 @@ public class RecipeService {
 
   //GET logic(s)
   public List<Recipe> getAllRecipes(){
-    List<Recipe> recipes = recipeRepository.findAll();
 
-    return recipes;
+    return recipeRepository.findAll();
   }
 
-  public Recipe getRecipeByID(String id){
-    Optional<Recipe> recipeByID = recipeRepository.findById(id);
+  public Recipe getRecipeByID(String id) throws Exception {
 
-    Recipe recipe = recipeByID.get();
+    Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new Exception("Recipe not available by given id" + id));
 
     return recipe;
   }
@@ -55,19 +53,11 @@ public class RecipeService {
 
 
   //PUT logic(s)
-  public Recipe updateRecipe(Recipe recipe, String id){
+  public Recipe updateRecipe(Recipe recipe, String id) throws Exception {
 
-    Optional<Recipe> recipeData = recipeRepository.findById(id);
+   recipeRepository.findById(id).orElseThrow(() -> new Exception("no recipe found"));
 
-    Recipe updatedRecipe = recipeData.get();
-
-      updatedRecipe.setDuration(recipe.getDuration());
-      updatedRecipe.setIngredients(recipe.getIngredients());
-      updatedRecipe.setInstructions(recipe.getInstructions());
-      updatedRecipe.setName(recipe.getName());
-      updatedRecipe.setServing(recipe.getServing());
-
-      return recipeRepository.save(updatedRecipe);
+    return recipeRepository.save(recipe);
 
 
 
