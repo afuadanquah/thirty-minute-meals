@@ -1,11 +1,10 @@
-CREATE
-    KEYSPACE meals
+CREATE KEYSPACE IF NOT EXISTS meals
     WITH REPLICATION = {
         'class' : 'SimpleStrategy',
         'replication_factor' : 1
         };
 
-CREATE TYPE meals.ingredients (
+CREATE TYPE IF NOT EXISTS meals.ingredients (
     name text,
     quantity text
     );
