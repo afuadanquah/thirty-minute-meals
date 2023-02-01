@@ -1,4 +1,5 @@
 rootProject.name = 'thirty-minute-meals'
 include 'recipes-service'
 include 'functional-tests'
+include 'nft'
 

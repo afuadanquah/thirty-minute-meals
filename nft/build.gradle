@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'scala'
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.6.1'
+//    testCompile 'io.gatling.highcharts:gatling-charts-highcharts:2.3.0'
+
+}
+
+
+
+/**
+ * Gatling load tests
+ */
+
+task testLoad(type: JavaExec) {
+    description = 'Test load the Spring Boot web service with Gatling'
+    group = 'Load Test'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'io.gatling.app.Gatling'
+    jvmArgs '-Dgatling.http.enableGA=false'
+    jvmArgs '-Djava.net.preferIPv4Stack=true'
+    jvmArgs '-DassertResults=true'
+    jvmArgs '-DtestType=local'
+    jvmArgs '-DtargetEnvironment=local'
+
+    args '-bf', 'build/classes/scala/main'
+    args '-rf', 'results'
+    args '-s', 'BasicSimulation'
+
+}
+
+def logbackGatlingConfig() {
+    return sourceSets.main.resources.find { it.name == 'logback-gatling.xml'};
+}
+
+test {
+    useJUnitPlatform()
+}

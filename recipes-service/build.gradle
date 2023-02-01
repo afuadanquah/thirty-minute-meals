@@ -30,33 +30,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'io.gatling.highcharts:gatling-charts-highcharts:2.3.0'
-}
-
-/**
- * Gatling load tests
- */
-
-task testLoad(type: JavaExec) {
-    description = 'Test load the Spring Boot web service with Gatling'
-    group = 'Load Test'
-    classpath = sourceSets.test.runtimeClasspath
-    jvmArgs = [
-            // workaround for https://github.com/gatling/gatling/issues/2689
-            "-Dgatling.core.directory.binaries=${sourceSets.test.output.classesDir.toString()}",
-            "-Dlogback.configurationFile=${logbackGatlingConfig()}"
-    ]
-    main = 'io.gatling.app.Gatling'
-    args = [
-
-'--simulation', 'scala.BasicSimulation',
-'--results-folder', "${buildDir}/gatling-results",
-'--binaries-folder', sourceSets.test.output.classesDir.toString()
-    ]
-}
-
-def logbackGatlingConfig() {
-    return sourceSets.test.resources.find { it.name == 'logback-gatling.xml'};
 }
 
 tasks.named('test') {
