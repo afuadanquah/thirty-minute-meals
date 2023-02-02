@@ -7,8 +7,6 @@ import scala.language.postfixOps
 
 class BasicSimulation extends Simulation {
 
-  //Simple NFT test
-
   val httpProtocol = http
     .baseUrl("http://localhost:8080/thirty-min-meals/recipe").
     check(status.is(200))
