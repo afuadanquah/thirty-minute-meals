@@ -7,15 +7,17 @@ import scala.language.postfixOps
 
 class BasicSimulation extends Simulation {
 
+  //set up the endpoint
   val httpProtocol = http
-    .baseUrl("http://localhost:8080/thirty-min-meals/recipe").
-    check(status.is(200))
+    .baseUrl("http://localhost:8080/thirty-min-meals/recipe")
+    .check(status.is(200))
 
+  //Organise the Scenario
   val scn = scenario("BasicSimulation")
     .exec(http("GetRecipe1")
       .get("/1"))
-    .pause(5)
 
+  //Execute the action of the NFT test
   setUp(
     scn.inject(
       constantUsersPerSec(10).during(5 minutes))).throttle(
